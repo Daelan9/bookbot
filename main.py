@@ -1,3 +1,4 @@
+import sys
 from stats import word_count
 
 def read_text(path):
@@ -25,19 +26,23 @@ def report(text):
     letters.sort(key=lambda x: x[1], reverse=True) #sort list by second element
     return letters
 
-def print_report(letters, path):
-    print(f"--Begin report:{path}--")
+def print_report(letters):
+    print("--Begin report--")
     for character,number in letters:
         print(f"The '{character}' was found {number} times")
     print("--End report--")
 
 def main():
-    path = "books/frankenstein.txt"
+    if len(sys.argv) < 2:
+        print ("Usage:python3 main.py <path_to_book>")
+        sys.exit(1)
+    path = sys.argv[1]
     text = read_text(path)
     words = word_count(text)
     book = count_characters(text)
     letters = report(text)
-    print_report(letters, path)
+    print(f"{words} words found in the document")
+    print_report(letters)
     
 
 if __name__ == "__main__":
