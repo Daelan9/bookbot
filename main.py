@@ -1,10 +1,8 @@
+from stats import word_count
+
 def read_text(path):
     with open(path) as r:
         return r.read()
-
-def word_count(text):    
-    words = text.split()
-    return len(words)
 
 def count_characters(text):
     unique_letters = {} #create new dictionary to contain single characters
